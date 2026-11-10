@@ -1,0 +1,6 @@
+/* Shared LaTeX layout; colors continue to come from the report theme. */
+.graph-math-label { display: flex; align-items: center; justify-content: center; height: 44px; line-height: 1.15; }
+.graph-math-label .katex { font-size: 1em; }
+.lesson-result strong { max-width: 100%; overflow-x: auto; padding-block: 3px; }
+#report :is(p, li, h2, h3, h4, td, th, figcaption, .caption) > .katex { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; padding-block: 2px; }
+@media print { .graph-math-label { color: inherit; } }

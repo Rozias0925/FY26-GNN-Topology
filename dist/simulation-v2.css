@@ -1,0 +1,55 @@
+/* V2 research chapter: existing forest / moon palette, report-first layout. */
+.sim-v2-outline { padding: 22px 24px; margin: 26px 0 34px; border: 1px solid #c5cfb4; background: #edf0e1; }
+.sim-v2-outline > p { margin: 0 0 12px; font-size: .85rem; font-weight: 650; }
+.sim-v2-outline ol { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 26px; list-style: none; padding: 0; margin: 0; }
+.sim-v2-outline button { display: flex; align-items: baseline; gap: 12px; width: 100%; padding: 5px 0; text-align: left; border: 0; background: transparent; color: var(--ink); font-size: .875rem; cursor: pointer; }
+.sim-v2-outline button span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.sim-v2-outline button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.sim-v2-status { display: flex; align-items: baseline; gap: 10px 18px; flex-wrap: wrap; margin: 20px 0; padding: 13px 17px; border-left: 3px solid #738a5b; background: #e8ecdb; }
+.sim-v2-status strong { font-size: .875rem; }
+.sim-v2-status span { color: var(--muted); font-size: .8125rem; line-height: 1.8; }
+.sim-v2-method { margin: 24px 0; padding: 22px 24px; border: 1px solid #c5cfb4; }
+.paper .sim-v2-method h3 { margin: 0 0 12px; }
+.sim-v2-method p:last-child { margin-bottom: 0; }
+.sim-v2-method .equation { background: #edf0e1; }
+.sim-v2-stages { list-style: none; padding: 0; margin: 24px 0; counter-reset: stages; }
+.sim-v2-stages > li { display: grid; grid-template-columns: 34px 1fr; column-gap: 18px; padding: 17px 0; border-bottom: 1px solid #c5cfb4; }
+.sim-v2-stages > li::before { counter-increment: stages; content: counter(stages); font: 500 1.35rem/1.5 var(--serif); color: #647956; }
+.sim-v2-stages h3 { margin: 0 0 7px; }
+.sim-v2-stages p { margin: 0; }
+.sim-v2-results-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0; }
+.sim-v2-results-nav button { border: 1px solid #aabb95; background: #edf0e1; color: var(--ink); border-radius: 2px; padding: 8px 12px; font-size: .8125rem; cursor: pointer; }
+.sim-v2-result { margin: 28px 0; padding: 24px; border: 1px solid #c5cfb4; background: #f3f4e9; scroll-margin-top: 105px; }
+.paper .sim-v2-result h3 { margin: 0 0 10px; }
+.sim-v2-result > p { font-size: .9375rem; }
+.sim-v2-result h4 { font-size: .95rem; margin: 22px 0 9px; }
+.sim-v2-result label { display: block; font-size: .8125rem; font-weight: 600; margin-bottom: 12px; }
+.sim-v2-result select { display: block; width: 100%; max-width: 520px; margin-top: 7px; }
+.sim-v2-blank { min-height: 160px; margin: 17px 0; padding: 26px 24px; display: grid; place-content: center; border: 1px dashed #9baa86; background: #e9edde; text-align: center; }
+.sim-v2-blank strong { font-size: .9375rem; }
+.sim-v2-blank p { font-size: .875rem; line-height: 1.85; max-width: 600px; margin: 8px 0 0; color: var(--muted); }
+.sim-v2-blank small { display: block; margin-top: 13px; font-size: .75rem; color: var(--muted); }
+.sim-v2-result figure { margin: 18px 0; }
+.sim-v2-result figure img { display: block; width: 100%; height: auto; background: white; }
+.sim-v2-result figcaption { font-size: .8125rem; line-height: 1.85; color: var(--muted); margin-top: 10px; }
+.sim-v2-observation { border-top: 1px solid #c5cfb4; margin-top: 20px; padding-top: 14px; }
+.sim-v2-observation strong { font-size: .875rem; }
+.sim-v2-observation p { font-size: .875rem; line-height: 1.9; color: var(--muted); margin: 7px 0 0; white-space: pre-line; }
+.sim-v2-downloads { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 0; list-style: none; font-size: .875rem; }
+.sim-v2-result th, .sim-v2-result td { font-size: .8125rem; min-width: 90px; }
+.sim-v2-result th:first-child { min-width: 150px; }
+.sim-v2-result .table-wrap { margin-bottom: 12px; }
+.sim-v2-equation-note { color: var(--muted); font-size: .875rem; }
+.sim-v2-legacy { margin: 25px 0; border-top: 1px solid #c5cfb4; padding-top: 20px; }
+@media (max-width: 700px) {
+  .sim-v2-outline { padding: 18px; }
+  .sim-v2-outline ol { grid-template-columns: 1fr; gap: 6px; }
+  .sim-v2-result, .sim-v2-method { padding: 18px; }
+  .sim-v2-stages > li { column-gap: 10px; grid-template-columns: 25px 1fr; }
+  .sim-v2-blank { padding: 22px 16px; min-height: 140px; }
+}
+@media print {
+  .sim-v2-outline, .sim-v2-results-nav { display: none; }
+  .sim-v2-result { background: white; padding: 16px; }
+  .sim-v2-result figure, .sim-v2-blank { break-inside: avoid; }
+}

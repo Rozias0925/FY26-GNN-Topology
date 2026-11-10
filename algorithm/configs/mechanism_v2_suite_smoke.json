@@ -1,0 +1,25 @@
+{
+  "purpose": "smoke",
+  "generator": {"n_nodes": 30, "n_steps": 20, "degree": 6},
+  "seeds": [7],
+  "training": {
+    "epochs": 3, "patience": 2, "batch_size": 4,
+    "widths": [8], "learning_rates": [0.003], "device": "cpu", "threads": 2
+  },
+  "diagnostics": {"folds": 2, "gate_epochs": 2, "probe_seed": 47},
+  "bootstrap_repetitions": 100,
+  "multi_axis_conditions": 2,
+  "design_seed": 20261003,
+  "sample_sizes": [20, 30],
+  "axes": {
+    "graph_signal": [0, 0.75], "kappa": [0, 4], "tau": [0, 2],
+    "delta": [0, 0.4], "eta": [0, 0.4]
+  },
+  "reuse_fixed_topology": true,
+  "save_datasets": false,
+  "suite": {
+    "workers": 2, "main_stages": ["B", "D", "sample_size"],
+    "robustness": true, "convergence": true, "convergence_epochs": 5,
+    "stage_a_baseline": "algorithm/results/no_smoke_budget_baseline"
+  }
+}

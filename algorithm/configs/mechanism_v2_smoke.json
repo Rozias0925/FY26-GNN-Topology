@@ -1,0 +1,15 @@
+{
+  "purpose": "smoke",
+  "stages": ["A"],
+  "generator": {"n_nodes": 30, "n_steps": 20, "degree": 6},
+  "seeds": [7, 19],
+  "training": {
+    "epochs": 8, "patience": 4, "batch_size": 4,
+    "widths": [16], "learning_rates": [0.003],
+    "device": "cpu", "threads": 2
+  },
+  "diagnostics": {"folds": 2, "gate_epochs": 12, "probe_seed": 47},
+  "bootstrap_repetitions": 200,
+  "gatv2": false,
+  "save_datasets": true
+}

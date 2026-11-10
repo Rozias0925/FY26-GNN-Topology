@@ -1,0 +1,26 @@
+{
+  "purpose": "research",
+  "stages": ["A"],
+  "generator": {
+    "n_nodes": 500, "n_steps": 40, "degree": 10, "phi": 0.6,
+    "graph_signal": 0.75, "kappa": 0, "delta": 0, "eta": 0, "tau": 0,
+    "noise": 0.3, "observation_noise": 0.5, "graph_family": "regular",
+    "task": "regression", "attention": "source", "smooth_normalize": true,
+    "train_fraction": 0.6, "validation_fraction": 0.2,
+    "classification_quantile": 0.8
+  },
+  "seeds": [7, 19, 31, 43, 59],
+  "training": {
+    "epochs": 200, "patience": 25, "batch_size": 4,
+    "widths": [32, 64], "learning_rates": [0.001, 0.003],
+    "weight_decay": 0.0001, "min_delta": 0.000001,
+    "device": "cpu", "threads": 2
+  },
+  "diagnostics": {"folds": 3, "gate_epochs": 80, "probe_seed": 47},
+  "bootstrap_repetitions": 2000,
+  "multi_axis_conditions": 200,
+  "design_seed": 20261002,
+  "sample_sizes": [100, 300, 500, 1000],
+  "gatv2": false,
+  "save_datasets": false
+}

@@ -1,0 +1,16 @@
+[project]
+name = "gnn-graph-selection"
+version = "0.2.0"
+description = "Controlled simulation utilities for static and dynamic GNN model selection"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "pandas>=2.2", "torch>=2.5", "scikit-learn>=1.5", "matplotlib>=3.9", "scipy>=1.12", "networkx>=3.4", "tzdata"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

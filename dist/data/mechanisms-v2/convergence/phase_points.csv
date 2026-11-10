@@ -1,0 +1,1 @@
+stage,axis,value,condition_id,task,primary_score,contrast,mean_gap,ci_low,ci_high,p_delta_positive,bootstrap_mean_positive,seeds,ci_scope,inference_ready,S_X,S_G,S_G_shuffled,H,R_hat,R_true,R_estimation_error,D_struct,D_pred

@@ -1,0 +1,80 @@
+{
+  "suite_source_sha256": "d2fb3976497a58b67d4dfe139f52ea6c645149efc1652d05a534199ee2dcf5d2",
+  "stage_a_source_sha256": "d4f431a19f2720e03bfb979395787e9bef40c65b26d5e3b3c800c99a98f48167",
+  "completed_at": "2026-10-05T15:41:32.869809+00:00",
+  "suite_model_evaluations": 7240,
+  "separate_stage_a_evaluations": 150,
+  "groups": {
+    "main": {
+      "website_json_sha256": "15ebd4f2b2047da96badf9c200665d438e7403dd877e60c4b58881a0b4da9718",
+      "evaluation_source_sha256s": [
+        "6bf74ff61cdfefce21fa7c69f9566fe9ff4397d4ae0865545ac7fbeecaa7eafc",
+        "d2fb3976497a58b67d4dfe139f52ea6c645149efc1652d05a534199ee2dcf5d2"
+      ]
+    },
+    "convergence": {
+      "website_json_sha256": "5bc069ac4ffff4d5964d2a2e5eff54fbf3780c606c79d9545d82eb5a32bd721a",
+      "evaluation_source_sha256s": [
+        "6bf74ff61cdfefce21fa7c69f9566fe9ff4397d4ae0865545ac7fbeecaa7eafc"
+      ]
+    },
+    "robustness": {
+      "website_json_sha256": "c7eeeaaee19c1b78f5245f760d3e54c57bc5bb6ab9545a125f81de2821633511",
+      "evaluation_source_sha256s": [
+        "6bf74ff61cdfefce21fa7c69f9566fe9ff4397d4ae0865545ac7fbeecaa7eafc",
+        "d2fb3976497a58b67d4dfe139f52ea6c645149efc1652d05a534199ee2dcf5d2"
+      ]
+    },
+    "stage_a": {
+      "website_json_sha256": "1ecb3114546ec594e29f933ec83d49f76449b0c140f0267b0bd3f231885f4e27",
+      "evaluation_source_sha256s": [
+        "d4f431a19f2720e03bfb979395787e9bef40c65b26d5e3b3c800c99a98f48167"
+      ]
+    }
+  },
+  "report_repair": {
+    "reason": "CSV type inference coerced numeric-looking condition hashes",
+    "completed_at": "2026-10-06T03:12:43.354605+00:00",
+    "report_generation_source_sha256": "89f55283efbea2111cc9e95b23d811743fddc7afacc9a847df27b283e017ca3c",
+    "repair_script_sha256": "3e2d0047f9b16d56671b8ae40a108ff9072d7799cd83a1d57e9276d02cff7c92",
+    "verified_original_evaluations": 7240,
+    "checkpoint_scores_unchanged": true
+  },
+  "download_sha256": {
+    "data/mechanisms-v2/main/metrics.csv": "6e7e1848169c0df433b195a1acfb7ae0713b900cb7b99482e9ac4c47b9dd015d",
+    "data/mechanisms-v2/main/paired_contrasts.csv": "b678a5c62bc0c23e4cdfd7f3f53f9a021d7362c56a5149f4d244ab05e9f90fb0",
+    "data/mechanisms-v2/main/response_curves.csv": "3e0b5b0d4f1bdab282ea9a3685da3de4ad3113d1d83d3ebf0c660c84d72e144c",
+    "data/mechanisms-v2/main/phase_points.csv": "d58eb9cccd50c8d04868a21ea950f3d934455b30022e100923dba7f0b3aa604d",
+    "data/mechanisms-v2/main/convergence_flags.csv": "acca7df10a9af36fea82dea03273d5f201db3b4031d0c51c22664ddc63e66b71",
+    "data/mechanisms-v2/main/figures/response_graph_signal_regression.png": "7deff0c769e67e0f688c003feb1a0ec1e8b89fafd8e8ceb6db6c10b8205352c4",
+    "data/mechanisms-v2/main/figures/response_kappa_regression.png": "b765b3035ec21c7fbffa9e25a334c0462fd1fae4d6f726834a895c23c056f86d",
+    "data/mechanisms-v2/main/figures/response_tau_regression.png": "963e84d39662a6611e1408c497e9161248e18624d44e9e76a01cf91c4bca247c",
+    "data/mechanisms-v2/main/figures/response_delta_regression.png": "fb094050509887578d85b3442f7c5dfe214a718a8d6244c2cecf47981b5582c2",
+    "data/mechanisms-v2/main/figures/response_eta_regression.png": "3cde36a383668bf7d96e85dea95841ac09d43b48d4865e566ab51b896b65547d",
+    "data/mechanisms-v2/main/figures/phase_S_G_R_hat_Architecture_Static.png": "e6fe5a069a78e28ffc567c3d77ff79f294cb8b181eb5e2037fef0d3d4d62e815",
+    "data/mechanisms-v2/main/figures/phase_D_struct_D_pred_Dynamics_GCN.png": "cda3a4b256b33af968245f707e56091d2176dc56338dfd8b69af056bb6fb24f7",
+    "data/mechanisms-v2/main/figures/phase_S_G_H_Static-GCN_minus_MLP.png": "b8b6c53d28fae890979e0e810ce09d7fb6e61858e9e3c52242681bb8423a37b8",
+    "data/mechanisms-v2/main/figures/sample_size_n_nodes_regression.png": "675270ac03439f82d177b1489f398ce73a49ee100acc71bdc4dce4e72fb97179",
+    "data/mechanisms-v2/convergence/metrics.csv": "316d89b8fc78df5d8fc5bc293fd836db262236211adef1c5893dceab15f7cdaa",
+    "data/mechanisms-v2/convergence/paired_contrasts.csv": "5bebe5157a5314b0b8e066a5d9043685752610921f08d23d4712ff4becb12ce2",
+    "data/mechanisms-v2/convergence/response_curves.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2",
+    "data/mechanisms-v2/convergence/phase_points.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2",
+    "data/mechanisms-v2/convergence/convergence_flags.csv": "5ca717a311865b0103650f8960e0a95feb6cae57206ceca6af90441cf7913361",
+    "data/mechanisms-v2/convergence/budget_sensitivity.csv": "2a68c4b22f0fc440a45e58a78f3989aa32b1d75944623b961c53aa1fb358a554",
+    "data/mechanisms-v2/convergence/budget_sensitivity_paired.csv": "293c3c55947907aff192decaad6ea58211c591ece4560b7f32960147594e7044",
+    "data/mechanisms-v2/robustness/metrics.csv": "7a117ce26e526888f255c14b743896988e063540fa3f5bf62075f1c3b665a37a",
+    "data/mechanisms-v2/robustness/paired_contrasts.csv": "af7bb9550d3a34fd05d4eb59fd04c33a91583a799f0065537e69a52f689e8aec",
+    "data/mechanisms-v2/robustness/response_curves.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2",
+    "data/mechanisms-v2/robustness/phase_points.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2",
+    "data/mechanisms-v2/robustness/convergence_flags.csv": "3590532bddd8b62447a4f6c7c29a832ad9333a8ee5dc3312dea21750427ac7bd",
+    "data/mechanisms-v2/robustness/figures/robustness_architecture_control_regression.png": "75654ce4f33b5811618d0541c233000c8629195377527946eefdc2940991b94e",
+    "data/mechanisms-v2/robustness/figures/robustness_classification_classification.png": "46b7110f8cd7e9413c5c8c966a9fc60155aae142344d531f82176e1916277a61",
+    "data/mechanisms-v2/robustness/figures/robustness_graph_family_regression.png": "7e136e704e45f59efdf732b4b772abbbfadc8d023f543acc605b60a38c7a86ce",
+    "data/mechanisms-v2/robustness/figures/robustness_noise_regression.png": "b17ab8d7333d0691317eaf5d1dec9e677f3afe69c1c369248c998b2ebe669bd2",
+    "data/mechanisms-v2/robustness/figures/robustness_query_dependent_regression.png": "10a27e400ecf8d28b81f86f89bcbdb81684cffdf0a2e06be046cdb4c5827892b",
+    "data/mechanisms-v2/stage_a/metrics.csv": "36c8c948d59218f1688abb88c11b1a6389f18f5598b6be25a305ac080100aa09",
+    "data/mechanisms-v2/stage_a/paired_contrasts.csv": "b9345b48299f3704cfddf30264fa08c93d5736d28f18a4cf283c89d85d172e7c",
+    "data/mechanisms-v2/stage_a/response_curves.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2",
+    "data/mechanisms-v2/stage_a/phase_points.csv": "f5481107e33758b5224a019c05f28b98e393abb1a7e9d829c7259bb131dfa0d2"
+  }
+}

@@ -1,0 +1,25 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+__pycache__/
+tmp/
+*.log
+.env
+.env.*
+!.env.example
+.openai/
+# Runtime data stay local; retain the portable input template.
+algorithm/data/*
+!algorithm/data/observations_template.csv
+# Superseded local bundle; index.html loads mechanism-results-web.js.
+dist/data/mechanism-results-v2.js
+algorithm/results/
+algorithm/.venv/
+algorithm/**/__pycache__/
+algorithm/**/*.pyc
+algorithm/data/raw/
+algorithm/data/processed/
+algorithm/data/official/
+algorithm/data/analysis/
+algorithm/data/verification/

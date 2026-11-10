@@ -1,0 +1,15 @@
+{
+  "batch": "overnight_20260930",
+  "purpose": "pilot",
+  "completedAt": "2026-09-29T18:41:34.149756+00:00",
+  "modelRuns": 945,
+  "candidateFits": 1890,
+  "sourceSha256": "90ef2a5145a6168243da31ea6fb092cd97c6c626f64d7c521e98c742c9365e76",
+  "fingerprint": "f85d4bd097a3264fcaa85ea407e02e3212c6ca26120c0f52772b850d2e8e5228",
+  "sourceFiles": {
+    "metrics.csv": "c41c295cb438b823831d3e910229ca406a57fe2aff18ab9b874701e92745655d",
+    "summary.csv": "c3d21a3c11396ac914ff496ec23670e828e4082a40b75dbcb5c6097d9297c8aa",
+    "paired_differences.csv": "8a6528701b49e07c31383fab808334b462feeef64c490aa0c047a5e8b8ee9a36",
+    "selection_rule.json": "7db2ee62a00084eea2cee0212ef26a1a67737947732ec74634fcbbba30dfc720"
+  }
+}

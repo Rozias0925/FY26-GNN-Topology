@@ -1,0 +1,2 @@
+# Preserve exact bytes so published scientific-artifact SHA-256 checks remain valid.
+* -text

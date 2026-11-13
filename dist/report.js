@@ -13,6 +13,7 @@
   let chapter = resolveChapter(location.hash.slice(1));
   if (location.hash && location.hash.slice(1)!==chapter) history.replaceState(null,'',`#${chapter}`);
   const state = {model:'Static GCN',time:0,stage:0,features:[2,1,4,3],featureNode:0};
+  let lessonObserver;
   const byId = id => document.getElementById(id);
   const t = (zh,en) => language === 'en' ? en : zh;
   const svgNS = 'http://www.w3.org/2000/svg';
@@ -72,6 +73,7 @@
   }
   function renderChapter(scroll){
     renderChrome();
+    if(lessonObserver)lessonObserver.disconnect();
     byId('report').dataset.chapter=chapter;
     byId('report').innerHTML=window.reportChapter(chapter,language);
     if(chapter==='walkthrough')initLesson();
@@ -91,6 +93,13 @@
     byId('lesson-next').addEventListener('click',()=>{state.stage=Math.min(3,state.stage+1);renderLesson();});
     byId('lesson-reset').addEventListener('click',()=>{Object.assign(state,{model:'Static GCN',time:0,stage:0,features:[2,1,4,3],featureNode:0});byId('lesson-model').value=state.model;byId('feature-node').value='0';renderLesson();});
     renderLesson();
+    if(window.ResizeObserver){
+      lessonObserver=new ResizeObserver(entries=>{
+        const svg=byId('lesson-graph');
+        if(svg&&svg.dataset.layout!==(entries[0].contentRect.width<480?'compact':'wide'))renderLesson();
+      });
+      lessonObserver.observe(byId('lesson-graph'));
+    }
   }
   function renderLesson(){
     const result=GraphLesson.modelExample(state.model,state.time,state.features);
@@ -113,23 +122,48 @@
     byId('lesson-result').className='lesson-result';
     byId('lesson-result').innerHTML=state.stage<2?`<p>${t('按「下一步」查看計算。','Select Next to inspect the calculation.')}</p>`:state.stage===2?`<strong>${inline(`z=${result.terms.map(term=>term.contribution<0?`(${fixed(term.contribution)})`:fixed(term.contribution)).join('+')}=${fixed(result.aggregate)}`)}</strong><p>${t('顯示值四捨五入至三位小數；加總使用未捨入值。','Displayed values are rounded to three decimals; totals use full precision.')}</p>`:`<strong>${inline(String.raw`h'_i=\max(0,${fixed(result.aggregate)})=${fixed(result.output)}`)}</strong><p>${t('教學算例，不是事件機率或模型成績。','Teaching calculation, not an event probability or benchmark score.')}</p>`;
     const svg=byId('lesson-graph');svg.replaceChildren();
-    svg.appendChild(el('title',{},`${state.model}; t${state.time}; ${t('目前加總','Current aggregate')} ${fixed(result.aggregate)}`));
-    const coordinates=[[215,215],[65,70],[215,55],[365,70]];
+    const compact=svg.getBoundingClientRect().width<480;
+    const width=compact?360:640, cx=width/2;
+    svg.dataset.layout=compact?'compact':'wide';
+    svg.setAttribute('viewBox',`0 0 ${width} 440`);
+    svg.appendChild(el('title',{},`${state.model}; t${state.time}; ${names[state.stage]}`));
+    svg.appendChild(el('desc',{},state.model==='MLP'?t('只使用目標自身的特徵，其餘節點不參與更新。','Only the target feature is used; other nodes do not enter the update.'):t('本圖顯示更新目標節點的訊息流。實線為使用中的鄰居，虛線為未使用的候選關係；自身來源另以自迴路標示。','Message flow into the target. Solid lines indicate active neighbors, dashed lines unused candidate relations; a self-loop represents the self contribution.')));
+    const coordinates=[[cx,268],[compact?60:95,92],[cx,92],[compact?300:545,92]];
+    function badge(x,y,tex,kind,node,boxWidth=108){
+      const group=el('g',{'data-kind':kind,'data-source':node});
+      group.appendChild(el('rect',{x:x-boxWidth/2,y:y-19,width:boxWidth,height:38,rx:5,fill:'#f6f5e9',stroke:'#c8d1b9','stroke-width':1}));
+      group.appendChild(graphMath(x,y,tex,'#435c38',18,boxWidth));
+      svg.appendChild(group);
+    }
     [1,2,3].forEach(node=>{
       const active=result.neighbors.includes(node);const [x1,y1]=coordinates[node];
       const term=result.terms.find(item=>item.node===node);
-      svg.appendChild(el('line',{x1,y1:y1+24,x2:215,y2:190,stroke:active?'#486b40':'#bfc8b1','stroke-width':active&&state.stage>=1?(1+term.weight*5):1.5,'stroke-dasharray':active?'':'4 6',opacity:active?1:.6}));
-      if(active&&state.stage>=1)svg.appendChild(graphMath((x1+215)/2+(node===2?29:0),(y1+215)/2-4,fixed(term.weight),'#745f2f',15,76));
+      if(state.model!=='MLP')svg.appendChild(el('line',{x1,y1:y1+27,x2:cx+(x1===cx?0:x1<cx?-20:20),y2:245,stroke:active?'#486b40':'#bfc8b1','stroke-width':active&&state.stage>=1?(1.5+term.weight*5):1.5,'stroke-dasharray':active?'':'4 6',opacity:active?1:.6,'data-neighbor':node,'data-active':active}));
     });
-    if(state.model!=='MLP')svg.appendChild(el('path',{d:'M192 226 C153 285 276 285 238 226',fill:'none',stroke:'#708655','stroke-width':1.5}));
+    const self=result.terms.find(term=>term.node===0);
+    if(state.model!=='MLP')svg.appendChild(el('path',{d:`M${cx+26} 278 C${cx+96} 270 ${cx+96} 346 ${cx+18} 293`,fill:'none',stroke:'#708655','stroke-width':state.stage>=1?1.5+self.weight*5:1.5,'data-kind':'self-loop'}));
+    [1,2,3].forEach(node=>{
+      const term=result.terms.find(item=>item.node===node);
+      if(term&&state.stage>=1)badge(coordinates[node][0],164,fixed(state.stage>=2?term.contribution:term.weight),state.stage>=2?'contribution':'weight',node);
+    });
     coordinates.forEach(([cx,cy],index)=>{
-      const active=result.active.includes(index);svg.appendChild(el('circle',{cx,cy,r:25,fill:index===0?'#325a40':active?'#dce5c9':'#ebeee2',stroke:active?'#66854f':'#b8c4a7','stroke-width':1.5}));
-      svg.appendChild(graphMath(cx,cy,labels[index],index===0?'#f4f1df':'#34502e',18,44));
-      svg.appendChild(graphMath(cx,cy-43,`h_{${labels[index]}}^{(0)}=${state.features[index]}`,'#435c38',16,120));
+      const active=result.active.includes(index);svg.appendChild(el('circle',{cx,cy,r:28,fill:index===0?'#325a40':active?'#dce5c9':'#ebeee2',stroke:active?'#66854f':'#b8c4a7','stroke-width':1.5}));
+      svg.appendChild(graphMath(cx,cy,labels[index],index===0?'#f4f1df':active?'#34502e':'#7b8872',22,44));
+      svg.appendChild(graphMath(index===0?cx-100:cx,index===0?278:36,`h_{${labels[index]}}^{(0)}=${state.features[index]}`,active?'#435c38':'#7b8872',19,compact?116:150));
     });
-    byId('lesson-graph-caption').textContent=state.model==='MLP'?t(`MLP 不讀取 ${inline(String.raw`\mathrm B,\mathrm C,\mathrm D`)}。虛線只顯示候選位置，不參與計算。`,`MLP does not read ${inline(String.raw`\mathrm B,\mathrm C,\mathrm D`)}. Dashed lines show candidate relations and do not participate.`):
+    if(state.stage>=1)badge(cx+(state.model==='MLP'?0:85),338,fixed(state.stage>=2?self.contribution:self.weight),state.stage>=2?'contribution':'weight',0);
+    svg.appendChild(el('line',{x1:15,y1:377,x2:width-15,y2:377,stroke:'#c8d1b9'}));
+    const summary=state.stage===0?String.raw`\mathcal S_i=\{${result.active.map(node=>labels[node]).join(',')}\}`:
+      state.stage===1?String.raw`z_i=\sum_{j\in\mathcal S_i}w_{ij}h_j^{(0)}`:
+      state.stage===2?`z_i=${fixed(result.aggregate)}`:
+      String.raw`h'_i=\max(0,${fixed(result.aggregate)})=${fixed(result.output)}`;
+    const summaryLabel=graphMath(cx,409,summary,'#294a37',compact?18:21,width-20);
+    summaryLabel.setAttribute('data-kind','summary');svg.appendChild(summaryLabel);
+    byId('lesson-graph-phase').textContent=state.stage===0?t('讀取特徵與可用來源','Features and available sources'):state.stage===1?t('框內數值：各來源係數（含自身）','Boxes: source weights, including self'):t('框內數值：係數 × 特徵的貢獻','Boxes: each weight × feature contribution');
+    byId('lesson-graph-caption').textContent=state.model==='MLP'?t(`MLP 只使用自身 ${inline('i')}；${inline(String.raw`\mathrm B,\mathrm C,\mathrm D`)} 以淡色顯示，不參與計算。`,`MLP uses only self ${inline('i')}; ${inline(String.raw`\mathrm B,\mathrm C,\mathrm D`)} are shown dimmed and do not participate.`):
       result.dynamic?t(`Dynamic：${inline('t_0')} 使用 ${inline(String.raw`\mathrm B,\mathrm C`)}；${inline('t_1')} 使用 ${inline(String.raw`\mathrm B,\mathrm D`)}。虛線表示未使用的關係。`,`Dynamic: ${inline(String.raw`\mathrm B,\mathrm C`)} at ${inline('t_0')}; ${inline(String.raw`\mathrm B,\mathrm D`)} at ${inline('t_1')}. Dashed relations are unused.`):
       t(`Static：兩個時間點都使用 ${inline(String.raw`\mathrm B,\mathrm C`)}。修改 ${inline(String.raw`\mathrm C`)} 的特徵，可觀察 GAT 的權重如何改變。`,`Static: ${inline(String.raw`\mathrm B,\mathrm C`)} are used at both times. Change ${inline(String.raw`\mathrm C`)}’s feature to inspect feature-dependent GAT weights.`);
+    if(state.model!=='MLP')byId('lesson-graph-caption').textContent+=t(' 圖中只畫進入目標的訊息；其餘節點的自迴路省略顯示，但仍納入 GCN 度數計算。',' Only messages entering the target are shown. Other nodes’ self-loops are omitted visually but included in GCN degree normalization.');
     for(const id of ['lesson-step-description','lesson-weights','lesson-result','lesson-graph-caption']) math(byId(id));
   }
 

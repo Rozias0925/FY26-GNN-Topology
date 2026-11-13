@@ -110,3 +110,26 @@
   .research-result-tabs { display: none; }
   .research-result-panel[hidden] { display: none !important; }
 }
+
+/* Keep the teaching diagram readable inside the report's narrower column. */
+.lesson .lesson-progress { padding: 16px 22px; border-bottom: 1px solid #c5cfb4; }
+.lesson .lesson-progress h3 { margin: 9px 0 0; font-size: 1rem; text-align: center; }
+.lesson .lesson-grid { grid-template-columns: minmax(0, 1fr); }
+.lesson .lesson-diagram { display: block; padding: 22px; border-right: 0; border-bottom: 1px solid #c5cfb4; }
+.lesson .lesson-diagram svg { display: block; width: 100%; max-width: 640px; height: auto; max-height: none; margin-inline: auto; }
+.lesson .lesson-graph-phase { margin: 0 0 4px; font-size: .8125rem; font-weight: 600; text-align: center; color: #435c38; }
+.lesson .feature-control { display: flex; align-items: flex-end; gap: 20px; margin-top: 16px; }
+.lesson .feature-control > label { margin-top: 0; }
+.lesson .feature-control > label:last-child { flex: 1; }
+.lesson .lesson-calculation > p { min-height: 0; margin-top: 0; }
+@media (min-width: 1500px) {
+  .lesson .lesson-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .lesson .lesson-diagram { border-right: 1px solid #c5cfb4; border-bottom: 0; }
+}
+@media (max-width: 560px) {
+  .lesson .lesson-progress { padding: 14px; }
+  .lesson .lesson-diagram { padding: 14px 8px; }
+  .lesson .lesson-graph-phase { font-size: .75rem; }
+  .lesson .feature-control, .lesson #lesson-graph-caption { margin-inline: 7px; }
+  .lesson .feature-control { gap: 14px; }
+}

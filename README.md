@@ -1,5 +1,10 @@
 # Static and Dynamic Graph Construction for GNNs
 
+## At a glance for research reviewers
+
+**Research question:** when does adding graph information, learned neighbor attention, or time-varying topology improve prediction over node-only models? **Design:** controlled synthetic mechanisms with matched data across MLP, static/dynamic GCN, and static/dynamic GAT, with chronological splits, five dataset seeds, and paired comparisons. **Evidence:** [published findings](https://rozias0925.github.io/FY26-GNN-Topology/#results), [result tables](dist/data/mechanisms-v2/), [source code](algorithm/src/gnn_mechanisms/), and [reproduction commands](algorithm/README.md). **Boundary:** 7,240 model evaluations are not 7,240 independent datasets or training fits; the findings are simulation-specific.
+
+
 This project investigates when graph structure improves prediction beyond a node's own features, when learned neighbor weights are useful, and when changing graph connections carry predictive information. It compares a multilayer perceptron (MLP) with static and dynamic versions of Graph Convolutional Networks (GCN) and Graph Attention Networks (GAT), using controlled synthetic experiments to explain their relative performance. **This repository includes the simulation and evaluation source code, experiment configurations, tests, exported results, and a bilingual research website.**
 
 [Research report](https://rozias0925.github.io/FY26-GNN-Topology/) | [Results](https://rozias0925.github.io/FY26-GNN-Topology/#results) | [Simulation code](algorithm/src/gnn_mechanisms/) | [Run the experiments](algorithm/README.md)
